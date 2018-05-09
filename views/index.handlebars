@@ -1,0 +1,52 @@
+<div class="container">
+    
+        <p><img id="catonburger" class="center" src="/assets/img/pusheen.png"></p>
+        <p><h1 id="title" class="text-center">Eat-Da-Burger!</h1></p>
+    
+
+    <div class="row">
+        <div class="col-sm-6 center">
+            <h3 class="text-center">Help yourself to: </h3>
+            <ul class="list-unstyled">
+                {{#each burgers}} 
+                    {{#unless this.devoured}}
+                        <li class="text-center">
+                            {{this.id}}.
+                            {{this.burger_name}}
+                            <form action="/burgers/{{this.id}}" method="POST">
+                                <input type="hidden" name="devoured" value="true">
+                                <button class="btn-info rounded" type="submit">Devour it!</button>
+                            </form>
+                        </li>
+                    {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="col-sm-6">
+            <h3 class="text-center">Uh-oh, you've already eaten: </h3>
+            <ul class="list-unstyled">
+                {{#each burgers}}
+                    {{#if this.devoured}}
+                        <li class="text-center">
+                            {{this.id}}.
+                            {{this.burger_name}}
+                        </li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+<br>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group text-center">
+            <form class="create-update-form text-center" action="/" method="POST">
+                <label for="burger">Add a burger:</label>
+                <input type="text" name="burger_name">
+                <button class="btn-danger rounded" type="submit">Submit</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
